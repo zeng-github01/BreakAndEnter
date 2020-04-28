@@ -33,7 +33,7 @@ namespace ExtraConcentratedJuice.BreakAndEnter
         {
             PlayerLook look = ((UnturnedPlayer)caller).Player.look;
 
-            if (PhysicsUtility.raycast(new Ray(look.aim.position, look.aim.forward), out RaycastHit hit, Mathf.Infinity, RayMasks.BARRICADE))
+            if (PhysicsUtility.raycast(new Ray(look.aim.position, look.aim.forward), out RaycastHit hit, Mathf.Infinity, RayMasks.BARRICADE_INTERACT))
             {
                 InteractableDoorHinge hinge = hit.transform.GetComponent<InteractableDoorHinge>();
 
@@ -44,12 +44,9 @@ namespace ExtraConcentratedJuice.BreakAndEnter
 
                     BarricadeManager.tryGetInfo(door.transform, out byte x, out byte y, out ushort plant, out ushort index, out BarricadeRegion region);
 
-                    BarricadeManager manager = (BarricadeManager)typeof(BarricadeManager).GetField("manager", BindingFlags.NonPublic |
-                         BindingFlags.Static).GetValue(null);
-
                     door.updateToggle(open);
 
-                    manager.channel.send("tellToggleDoor", ESteamCall.ALL, ESteamPacket.UPDATE_RELIABLE_BUFFER, new object[]
+                    BarricadeManager.instance.channel.send("tellToggleDoor", ESteamCall.ALL, ESteamPacket.UPDATE_RELIABLE_BUFFER, new object[]
                     {
                         x,
                         y,
