@@ -10,3 +10,7 @@ deploy:
     repo: 'IcePlugins/BreakAndEnter'
   skip_cleanup: true
   release_notes: 'This is an automated build of the plugin from Travis-CI.'
+  draft: false
+  branches:
+    except:
+    - /^untagged/
