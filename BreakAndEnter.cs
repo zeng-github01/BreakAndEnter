@@ -12,7 +12,13 @@ namespace ExtraConcentratedJuice.BreakAndEnter
     {
         public static BreakAndEnter instance;
 
-        protected override void Load() => instance = this;
+        protected override void Load()
+        {
+            instance = this;
+            
+            Logger.Log("BreakAndEnter by ExtraGayJuice loaded");
+            Logger.Log("For help please visit https://iceplugins.xyz/BreakAndEnter/");
+        }
 
         public override TranslationList DefaultTranslations =>
             new TranslationList

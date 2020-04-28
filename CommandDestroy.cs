@@ -31,7 +31,7 @@ namespace ExtraConcentratedJuice.BreakAndEnter
             Player player = ((UnturnedPlayer)caller).Player;
             PlayerLook look = player.look;
 
-            if (PhysicsUtility.raycast(new Ray(look.aim.position, look.aim.forward), out RaycastHit hit, Mathf.Infinity, RayMasks.BARRICADE | RayMasks.STRUCTURE))
+            if (PhysicsUtility.raycast(new Ray(look.aim.position, look.aim.forward), out RaycastHit hit, Mathf.Infinity, RayMasks.BARRICADE_INTERACT | RayMasks.STRUCTURE))
             {
                 Interactable2SalvageBarricade barri = hit.transform.GetComponent<Interactable2SalvageBarricade>();
                 Interactable2SalvageStructure struc = hit.transform.GetComponent<Interactable2SalvageStructure>();
@@ -41,11 +41,8 @@ namespace ExtraConcentratedJuice.BreakAndEnter
                     BarricadeManager.tryGetInfo(barri.root, out byte x, out byte y, out ushort plant, out ushort index, out BarricadeRegion region);
 
                     region.barricades.RemoveAt(index);
-
-                    BarricadeManager manager = (BarricadeManager)typeof(BarricadeManager).GetField("manager", BindingFlags.NonPublic |
-                         BindingFlags.Static).GetValue(null);
-
-                    manager.channel.send("tellTakeBarricade", ESteamCall.ALL, ESteamPacket.UPDATE_RELIABLE_BUFFER, new object[]
+                    
+                    BarricadeManager.instance.channel.send("tellTakeBarricade", ESteamCall.ALL, ESteamPacket.UPDATE_RELIABLE_BUFFER, new object[]
                     {
                         x,
                         y,
@@ -61,10 +58,7 @@ namespace ExtraConcentratedJuice.BreakAndEnter
 
                     region.structures.RemoveAt(index);
 
-                    StructureManager manager = (StructureManager)typeof(StructureManager).GetField("manager", BindingFlags.NonPublic |
-                         BindingFlags.Static).GetValue(null);
-
-                    manager.channel.send("tellTakeStructure", ESteamCall.ALL, x, y, StructureManager.STRUCTURE_REGIONS, ESteamPacket.UPDATE_RELIABLE_BUFFER, new object[]
+                    StructureManager.instance.channel.send("tellTakeStructure", ESteamCall.ALL, x, y, StructureManager.STRUCTURE_REGIONS, ESteamPacket.UPDATE_RELIABLE_BUFFER, new object[]
                     {
                         x,
                         y,
