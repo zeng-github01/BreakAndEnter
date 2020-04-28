@@ -1,8 +1,5 @@
 language: csharp
 solution: BreakAndEnter.sln
-cache:
-  directories:
-  - /usr/lib/mono/
 deploy:
   provider: releases
   edge: true
