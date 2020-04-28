@@ -12,6 +12,5 @@ deploy:
   on:
     tags: false
   skip_cleanup: true
-  name: Automated CI Build
   release_notes: 'This is an automated build of the plugin from Travis-CI. It is the most up to date build at the time of the commit.'
   draft: false
