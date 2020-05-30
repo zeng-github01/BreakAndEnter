@@ -1,26 +1,35 @@
-﻿using Rocket.Core.Logging;
-using Rocket.Core.Plugins;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Rocket.Core.Plugins;
+using System.Collections;
 using Rocket.API.Collections;
+using SDG.Unturned;
+using UnityEngine;
+using Logger = Rocket.Core.Logging.Logger;
 
 namespace ExtraConcentratedJuice.BreakAndEnter
 {
-    public class BreakAndEnter : RocketPlugin
+    public class BreakAndEnter : RocketPlugin<BreakAndEnterConfig>
     {
         public static BreakAndEnter instance;
+        private float _autoCloseDoorsDelay;
 
         protected override void Load()
         {
             instance = this;
+            _autoCloseDoorsDelay = instance.Configuration.Instance.AutoCloseDoorsDelay / 1000f;
             
             // Hello by name is Sven and your name sucks because it's just three random words combined
             // I had to paraphrase because I couldn't find the picture
             // Now merge my PR already
             Logger.Log("BreakAndEnter by ExtraConcatenatedJuice loaded");
             Logger.Log("For help please visit https://iceplugins.xyz/BreakAndEnter/");
+        }
+
+        public void AutoCloseDoor(InteractableDoor door) => StartCoroutine(_AutoCloseDoor(door));
+        
+        private IEnumerator _AutoCloseDoor(InteractableDoor door)
+        {
+            yield return new WaitForSeconds(_autoCloseDoorsDelay);
+            Util.ToggleDoor(door, false);
         }
 
         public override TranslationList DefaultTranslations =>

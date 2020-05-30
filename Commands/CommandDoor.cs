@@ -1,14 +1,9 @@
 ﻿using Rocket.API;
-using Rocket.Core.Logging;
 using Rocket.Unturned.Chat;
-using Rocket.Unturned.Effects;
 using Rocket.Unturned.Player;
 using SDG.Framework.Utilities;
 using SDG.Unturned;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using UnityEngine;
 
 namespace ExtraConcentratedJuice.BreakAndEnter
@@ -42,30 +37,18 @@ namespace ExtraConcentratedJuice.BreakAndEnter
                     InteractableDoor door = hinge.door;
                     bool open = !door.isOpen;
 
-                    BarricadeManager.tryGetInfo(door.transform, out byte x, out byte y, out ushort plant, out ushort index, out BarricadeRegion region);
-
-                    door.updateToggle(open);
-
-                    BarricadeManager.instance.channel.send("tellToggleDoor", ESteamCall.ALL, ESteamPacket.UPDATE_RELIABLE_BUFFER, new object[]
-                    {
-                        x,
-                        y,
-                        plant,
-                        index,
-                        open
-                    });
+                    Util.ToggleDoor(door, open);
 
                     UnturnedChat.Say(caller, Util.Translate("door_toggle", open ? "opened" : "closed"));
+
+                    if (open && BreakAndEnter.instance.Configuration.Instance.AutoCloseDoors)
+                        BreakAndEnter.instance.AutoCloseDoor(door);
                 }
                 else
-                {
                     UnturnedChat.Say(caller, Util.Translate("invalid_door"));
-                }
             }
             else
-            {
                 UnturnedChat.Say(caller, Util.Translate("no_object"));
-            }
         }
     }
 }
