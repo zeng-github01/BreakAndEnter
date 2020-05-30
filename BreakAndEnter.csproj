@@ -77,10 +77,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandDestroy.cs" />
-    <Compile Include="CommandStorage.cs" />
-    <Compile Include="CommandDoor.cs" />
+    <Compile Include="BreakAndEnterConfig.cs" />
     <Compile Include="BreakAndEnter.cs" />
+    <Compile Include="Commands\CommandDestroy.cs" />
+    <Compile Include="Commands\CommandDoor.cs" />
+    <Compile Include="Commands\CommandStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util.cs" />
   </ItemGroup>
