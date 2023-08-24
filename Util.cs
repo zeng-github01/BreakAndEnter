@@ -9,7 +9,7 @@ namespace ExtraConcentratedJuice.BreakAndEnter
 
         public static void ToggleDoor(InteractableDoor door, bool open)
         {
-            BarricadeManager.tryGetInfo(door.transform, out byte x, out byte y, out ushort plant, out ushort index, out BarricadeRegion region);
+            //door.updateToggle(open);
 
             door.updateToggle(open);
 
