@@ -29,40 +29,28 @@ namespace ExtraConcentratedJuice.BreakAndEnter
             Player player = ((UnturnedPlayer)caller).Player;
             PlayerLook look = player.look;
 
-            if (PhysicsUtility.raycast(new Ray(look.aim.position, look.aim.forward), out RaycastHit hit, Mathf.Infinity, RayMasks.BARRICADE_INTERACT | RayMasks.STRUCTURE))
+            if (Physics.Raycast(new Ray(look.aim.position, look.aim.forward), out RaycastHit hit, Mathf.Infinity, RayMasks.BARRICADE_INTERACT | RayMasks.STRUCTURE))
             {
                 Interactable2SalvageBarricade barri = hit.transform.GetComponent<Interactable2SalvageBarricade>();
                 Interactable2SalvageStructure struc = hit.transform.GetComponent<Interactable2SalvageStructure>();
 
                 if (barri != null)
                 {
-                    BarricadeManager.tryGetInfo(barri.root, out byte x, out byte y, out ushort plant, out ushort index, out BarricadeRegion region);
 
-                    region.barricades.RemoveAt(index);
-                    
-                    BarricadeManager.instance.channel.send("tellTakeBarricade", ESteamCall.ALL, ESteamPacket.UPDATE_RELIABLE_BUFFER, new object[]
-                    {
-                        x,
-                        y,
-                        plant,
-                        index
-                    });
+                    var drop = BarricadeManager.FindBarricadeByRootTransform(barri.root);
+                    BarricadeManager.tryGetRegion(barri.root, out byte x, out byte y, out ushort plant, out _);
+
+                    BarricadeManager.destroyBarricade(drop, x, y, plant);
 
                     UnturnedChat.Say(caller, Util.Translate("barricade_removed"));
                 }
                 else if (struc != null)
                 {
-                    StructureManager.tryGetInfo(struc.transform, out byte x, out byte y, out ushort index, out StructureRegion region);
+                   var drop = StructureManager.FindStructureByRootTransform(struc.transform);
 
-                    region.structures.RemoveAt(index);
+                    StructureManager.tryGetRegion(struc.transform, out byte x, out byte y,out _);
 
-                    StructureManager.instance.channel.send("tellTakeStructure", ESteamCall.ALL, x, y, StructureManager.STRUCTURE_REGIONS, ESteamPacket.UPDATE_RELIABLE_BUFFER, new object[]
-                    {
-                        x,
-                        y,
-                        index,
-                        (region.drops[index].model.position - player.transform.position).normalized * 100f
-                    });
+                    StructureManager.destroyStructure(drop,x,y,(drop.model.position - player.transform.position).normalized * 100f);
 
                     UnturnedChat.Say(caller, Util.Translate("structure_removed"));
                 }

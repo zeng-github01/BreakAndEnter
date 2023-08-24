@@ -28,7 +28,7 @@ namespace ExtraConcentratedJuice.BreakAndEnter
         {
             PlayerLook look = ((UnturnedPlayer)caller).Player.look;
 
-            if (PhysicsUtility.raycast(new Ray(look.aim.position, look.aim.forward), out RaycastHit hit, Mathf.Infinity, RayMasks.BARRICADE_INTERACT))
+            if (Physics.Raycast(new Ray(look.aim.position, look.aim.forward), out RaycastHit hit, Mathf.Infinity, RayMasks.BARRICADE_INTERACT))
             {
                 InteractableDoorHinge hinge = hit.transform.GetComponent<InteractableDoorHinge>();
 

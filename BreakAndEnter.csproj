@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ExtraConcentratedJuice</RootNamespace>
     <AssemblyName>BreakAndEnter</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,32 +30,23 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libraries\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\U3DS\Unturned_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libraries\Assembly-CSharp-firstpass.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="com.rlabrecque.steamworks.net">
+      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\U3DS\Unturned_Data\Managed\com.rlabrecque.steamworks.net.dll</HintPath>
     </Reference>
     <Reference Include="Rocket.API">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libraries\Rocket.API.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\U3DS\Modules\Rocket.Unturned\Rocket.API.dll</HintPath>
     </Reference>
     <Reference Include="Rocket.Core">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libraries\Rocket.Core.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\U3DS\Modules\Rocket.Unturned\Rocket.Core.dll</HintPath>
     </Reference>
     <Reference Include="Rocket.Unturned">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libraries\Rocket.Unturned.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\U3DS\Modules\Rocket.Unturned\Rocket.Unturned.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

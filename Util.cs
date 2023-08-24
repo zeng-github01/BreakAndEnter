@@ -10,11 +10,7 @@ namespace ExtraConcentratedJuice.BreakAndEnter
         public static void ToggleDoor(InteractableDoor door, bool open)
         {
             //door.updateToggle(open);
-
-            door.updateToggle(open);
-
-            BarricadeManager.instance.channel.send("tellToggleDoor", ESteamCall.ALL,
-                ESteamPacket.UPDATE_RELIABLE_BUFFER, x, y, plant, index, open);
+            BarricadeManager.ServerSetDoorOpen(door, open);
         }
     }
 }
