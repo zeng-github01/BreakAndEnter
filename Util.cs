@@ -9,7 +9,6 @@ namespace ExtraConcentratedJuice.BreakAndEnter
 
         public static void ToggleDoor(InteractableDoor door, bool open)
         {
-            //door.updateToggle(open);
             BarricadeManager.ServerSetDoorOpen(door, open);
         }
     }
