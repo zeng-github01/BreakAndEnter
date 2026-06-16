@@ -29,10 +29,11 @@ namespace ExtraConcentratedJuice.BreakAndEnter
             Player player = ((UnturnedPlayer)caller).Player;
             PlayerLook look = player.look;
 
-            if (Physics.Raycast(new Ray(look.aim.position, look.aim.forward), out RaycastHit hit, Mathf.Infinity, RayMasks.BARRICADE_INTERACT | RayMasks.STRUCTURE))
+            if (Physics.Raycast(new Ray(look.aim.position, look.aim.forward), out RaycastHit hit, Mathf.Infinity, RayMasks.BARRICADE_INTERACT | RayMasks.STRUCTURE | RayMasks.VEHICLE))
             {
-                Interactable2SalvageBarricade barri = hit.transform.GetComponent<Interactable2SalvageBarricade>();
-                Interactable2SalvageStructure struc = hit.transform.GetComponent<Interactable2SalvageStructure>();
+                Interactable2SalvageBarricade barri = Util.SmartFinder<Interactable2SalvageBarricade>(hit.transform);
+                Interactable2SalvageStructure struc = Util.SmartFinder<Interactable2SalvageStructure>(hit.transform);
+                InteractableVehicle vehicle = Util.SmartFinder<InteractableVehicle>(hit.transform);
 
                 if (barri != null)
                 {
@@ -53,6 +54,11 @@ namespace ExtraConcentratedJuice.BreakAndEnter
                     StructureManager.destroyStructure(drop,x,y,(drop.model.position - player.transform.position).normalized * 100f);
 
                     UnturnedChat.Say(caller, Util.Translate("structure_removed"));
+                }
+                else if (vehicle != null)
+                {
+                    VehicleManager.askVehicleDestroy(vehicle);
+                    UnturnedChat.Say(caller, Util.Translate("vehicle_removed"));
                 }
                 else
                 {

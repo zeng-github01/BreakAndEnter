@@ -30,7 +30,7 @@ namespace ExtraConcentratedJuice.BreakAndEnter
 
             if (Physics.Raycast(new Ray(look.aim.position, look.aim.forward), out RaycastHit hit, Mathf.Infinity, RayMasks.BARRICADE_INTERACT))
             {
-                InteractableDoor door = hit.transform.GetComponentInParent<InteractableDoor>();
+                InteractableDoor door = Util.SmartFinder<InteractableDoor>(hit.transform);
 
                 if (door != null)
                 {

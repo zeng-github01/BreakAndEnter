@@ -29,21 +29,20 @@ namespace ExtraConcentratedJuice.BreakAndEnter
             Player player = ((UnturnedPlayer)caller).Player;
             PlayerLook look = player.look;
 
-            if (Physics.Raycast(new Ray(look.aim.position, look.aim.forward), out RaycastHit hit, Mathf.Infinity, RayMasks.BARRICADE_INTERACT))
+            if (Physics.Raycast(new Ray(look.aim.position, look.aim.forward), out RaycastHit hit, Mathf.Infinity, RayMasks.BARRICADE_INTERACT | RayMasks.VEHICLE))
             {
-                InteractableStorage storage = hit.transform.GetComponent<InteractableStorage>();
+                InteractableStorage storage = Util.SmartFinder<InteractableStorage>(hit.transform);
+                InteractableVehicle vehicle = Util.SmartFinder<InteractableVehicle>(hit.transform);
 
                 if (storage != null)
                 {
-                    storage.isOpen = true;
-                    storage.opener = player;
-                    player.inventory.isStoring = true;
-                    player.inventory.isStorageTrunk = false;
-                    player.inventory.storage = storage;
-                    player.inventory.updateItems(PlayerInventory.STORAGE, storage.items);
-                    player.inventory.sendStorage();
+                    player.inventory.openStorage(storage);
 
                     UnturnedChat.Say(caller, Util.Translate("storage_open"));
+                }
+                else if (vehicle != null)
+                {
+                    vehicle.grantTrunkAccess(player);
                 }
                 else
                 {

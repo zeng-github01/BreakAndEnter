@@ -38,6 +38,7 @@ namespace ExtraConcentratedJuice.BreakAndEnter
                 { "no_object", "No object was found in your line of sight." },
                 { "structure_removed", "Structure removed successfully." },
                 { "barricade_removed", "Barricade removed successfully." },
+                { "vehicle_removed", "Vehicle removed successfully." },
                 { "invalid_destroy", "The object that you are looking at is not a barricade nor a structure." },
                 { "invalid_door", "The object that you are looking at is not a door." },
                 { "door_toggle", "Door {0}." },
