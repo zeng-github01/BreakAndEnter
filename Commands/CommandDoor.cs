@@ -30,11 +30,10 @@ namespace ExtraConcentratedJuice.BreakAndEnter
 
             if (Physics.Raycast(new Ray(look.aim.position, look.aim.forward), out RaycastHit hit, Mathf.Infinity, RayMasks.BARRICADE_INTERACT))
             {
-                InteractableDoorHinge hinge = hit.transform.GetComponent<InteractableDoorHinge>();
+                InteractableDoor door = hit.transform.GetComponentInParent<InteractableDoor>();
 
-                if (hinge != null)
+                if (door != null)
                 {
-                    InteractableDoor door = hinge.door;
                     bool open = !door.isOpen;
 
                     Util.ToggleDoor(door, open);
