@@ -43,6 +43,7 @@ namespace ExtraConcentratedJuice.BreakAndEnter
                 { "invalid_door", "The object that you are looking at is not a door." },
                 { "door_toggle", "Door {0}." },
                 { "storage_open", "Opened storage." },
+                { "trunk_open", "Opened trunk." },
                 { "invalid_storage", "The object that you are looking at is not a storage unit." }
             };
     }

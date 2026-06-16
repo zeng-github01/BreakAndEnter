@@ -40,10 +40,6 @@ namespace ExtraConcentratedJuice.BreakAndEnter
 
                     UnturnedChat.Say(caller, Util.Translate("storage_open"));
                 }
-                else if (vehicle != null)
-                {
-                    vehicle.grantTrunkAccess(player);
-                }
                 else
                 {
                     UnturnedChat.Say(caller, Util.Translate("invalid_storage"));
