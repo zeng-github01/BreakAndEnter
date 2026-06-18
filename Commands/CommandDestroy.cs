@@ -49,9 +49,9 @@ namespace ExtraConcentratedJuice.BreakAndEnter
                 {
                    var drop = StructureManager.FindStructureByRootTransform(struc.transform);
 
-                    StructureManager.tryGetRegion(struc.transform, out byte x, out byte y,out _);
+                    StructureManager.tryGetRegion(struc.transform, out byte x, out byte y, out _);
 
-                    StructureManager.destroyStructure(drop,x,y,(drop.model.position - player.transform.position).normalized * 100f);
+                    StructureManager.destroyStructure(drop, x, y, (drop.model.position - player.transform.position).normalized * 100f);
 
                     UnturnedChat.Say(caller, Util.Translate("structure_removed"));
                 }

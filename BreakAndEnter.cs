@@ -39,11 +39,10 @@ namespace ExtraConcentratedJuice.BreakAndEnter
                 { "structure_removed", "Structure removed successfully." },
                 { "barricade_removed", "Barricade removed successfully." },
                 { "vehicle_removed", "Vehicle removed successfully." },
-                { "invalid_destroy", "The object that you are looking at is not a barricade nor a structure." },
+                { "invalid_destroy", "The object that you are looking at is not a barricade, structure, or vehicle." },
                 { "invalid_door", "The object that you are looking at is not a door." },
                 { "door_toggle", "Door {0}." },
                 { "storage_open", "Opened storage." },
-                { "trunk_open", "Opened trunk." },
                 { "invalid_storage", "The object that you are looking at is not a storage unit." }
             };
     }

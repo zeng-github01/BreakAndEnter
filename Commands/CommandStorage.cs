@@ -32,7 +32,6 @@ namespace ExtraConcentratedJuice.BreakAndEnter
             if (Physics.Raycast(new Ray(look.aim.position, look.aim.forward), out RaycastHit hit, Mathf.Infinity, RayMasks.BARRICADE_INTERACT | RayMasks.VEHICLE))
             {
                 InteractableStorage storage = Util.SmartFinder<InteractableStorage>(hit.transform);
-                InteractableVehicle vehicle = Util.SmartFinder<InteractableVehicle>(hit.transform);
 
                 if (storage != null)
                 {
