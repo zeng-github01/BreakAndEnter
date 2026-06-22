@@ -32,12 +32,20 @@ namespace ExtraConcentratedJuice.BreakAndEnter
             if (Physics.Raycast(new Ray(look.aim.position, look.aim.forward), out RaycastHit hit, Mathf.Infinity, RayMasks.BARRICADE_INTERACT | RayMasks.VEHICLE))
             {
                 InteractableStorage storage = Util.SmartFinder<InteractableStorage>(hit.transform);
+                InteractableVehicle vehicle = Util.SmartFinder<InteractableVehicle>(hit.transform);
 
                 if (storage != null)
                 {
                     player.inventory.openStorage(storage);
 
                     UnturnedChat.Say(caller, Util.Translate("storage_open"));
+                }
+                else if (vehicle != null)
+                {
+                    player.inventory.isStoring = true;
+                    player.inventory.storage = null;
+                    player.inventory.updateItems(PlayerInventory.STORAGE, vehicle.trunkItems);
+                    player.inventory.sendStorage();
                 }
                 else
                 {
